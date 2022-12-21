@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 import sys
+import math
+
 
 def rsa(integer: int):
-    for i in range(2, integer):
+    root = math.ceil(math.sqrt(integer))
+    for i in range(2, root + 1):
         if not integer % i:
             return i
+    return integer
+
 
 def main():
     file_name = sys.argv[1]
@@ -12,7 +17,7 @@ def main():
         data = [int(integer) for integer in file.readlines()]
     for n in data:
         print(f"{n}={n//rsa(n)}*{rsa(n)}")
-    
+
 
 if __name__ == "__main__":
     main()
